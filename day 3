@@ -1,0 +1,55 @@
+//Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+
+//Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+
+ 
+
+//Example 1:
+
+//Input: x = 123
+//Output: 321
+//Example 2:
+
+//Input: x = -123
+//Output: -321
+//Example 3:
+
+//Input: x = 120
+//Output: 21
+ 
+
+//Constraints:
+
+//-231 <= x <= 231 - 1
+  
+class Solution {
+public:
+    long reverse_num(int n) {
+        int digit;
+        long reverse_num = 0;
+        while(n != 0){
+            digit = n % 10;
+            reverse_num = reverse_num * 10 + digit;
+            n = n / 10;
+        }
+        return reverse_num;
+    }
+
+    int reverse(int x) {
+        long ans;
+
+        // reverse conditions
+        if (x == 0){
+            ans = 0;
+        }
+        else{
+            ans  = reverse_num(x);
+        }
+
+        // ans conditions
+        if (ans < INT_MIN || ans > INT_MAX){
+            ans = 0;
+        }
+        return (int)ans;
+    }
+};
